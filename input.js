@@ -9,10 +9,6 @@ const setupInput = function(conn) {
   stdin.resume();
   const handleUserInput = () => {
     let direction;
-    let moveUp;
-    let moveDown;
-    let moveLeft;
-    let moveRight;
     let interval;
     // function - current command === one running already? Yes fine, no clear relevant interval
     //on key pressed; clear intervalRunning; return keypress function (name each of the below and feed in)
@@ -24,37 +20,45 @@ const setupInput = function(conn) {
         return;
       } else if (['a', 'd'].includes(key) && ['left', 'right'].includes(direction)) {
         return;
-      };
+      }
       console.log(key);
       switch (key) {
-        case 'w':
-          clearInterval(interval);
-          interval = setInterval(() => {direction = 'up';
-          conn.write("Move: up")}, 100);
-          break;
-        case 'a':
-          clearInterval(interval);
-          interval = setInterval(() => {direction = 'left';
-          conn.write("Move: left")}, 100);
-          break;
+      case 'w':
+        clearInterval(interval);
+        interval = setInterval(() => {
+          direction = 'up';
+          conn.write("Move: up");
+        }, 100);
+        break;
+      case 'a':
+        clearInterval(interval);
+        interval = setInterval(() => {
+          direction = 'left';
+          conn.write("Move: left");
+        }, 100);
+        break;
 
-        case 's':
-          clearInterval(interval);
-          interval = setInterval(() => {direction = 'down';
-          conn.write("Move: down")}, 100);
-          break;
+      case 's':
+        clearInterval(interval);
+        interval = setInterval(() => {
+          direction = 'down';
+          conn.write("Move: down");
+        }, 100);
+        break;
 
-        case 'd':
-          clearInterval(interval);
-          interval = setInterval(() => {direction = 'right';
-          conn.write("Move: right")}, 100);
-          break;
+      case 'd':
+        clearInterval(interval);
+        interval = setInterval(() => {
+          direction = 'right';
+          conn.write("Move: right");
+        }, 100);
+        break;
 
       }
     });
-  }
+  };
   handleUserInput();
-  return stdin;  
+  return stdin;
 };
 module.exports = { setupInput };
-//is move prohibited? //Look at direction //if not, 
+//is move prohibited? //Look at direction //if not,
